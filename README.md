@@ -1,2 +1,2 @@
 # SharpCoders_ProjetoJogodaVelha
-desafio proposto pelo curso pra fazer um jogo da velha, ainda em desenvolvimento
+desafio proposto pelo curso pra fazer um jogo da velha em c#, ainda em desenvolvimento
