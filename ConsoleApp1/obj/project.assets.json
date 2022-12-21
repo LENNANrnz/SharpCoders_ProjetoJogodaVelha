@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\JogoDaVelha\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
-      "projectName": "ConsoleApp1",
-      "projectPath": "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\JogoDaVelha\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\JogoDaVelha\\ConsoleApp1\\ConsoleApp1\\JogoDaVelha.csproj",
+      "projectName": "JogoDaVelha",
+      "projectPath": "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\JogoDaVelha\\ConsoleApp1\\ConsoleApp1\\JogoDaVelha.csproj",
       "packagesPath": "C:\\Users\\lenna\\.nuget\\packages\\",
       "outputPath": "D:\\Minhas coisas\\Projetos viasula studio\\SharpCoders\\JogoDaVelha\\ConsoleApp1\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
