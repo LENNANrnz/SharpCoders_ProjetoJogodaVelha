@@ -6,28 +6,19 @@ namespace JogoDaVelha
 
     public class Program
     {
-        static void IniciarJogo(List<string> NomeJogador, int contadorplayer1, int contadorplayer2, int contadorEmpate)
+        static void IniciarJogo(List<string> NomeJogador)
         {
-
-
             string[] jogo = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" };
 
             string valorMarcado;
 
-            // arrumar tabela checkpoint
-
-
-
             for (int i = 0; i <= 9; i++)
             {
                 Console.Clear();
-
                 Console.Write(
                        $"__{jogo[0]}__|__{jogo[1]}__|__{jogo[2]}__\n" +
                        $"__{jogo[3]}__|__{jogo[4]}__|__{jogo[5]}__\n" +
                        $"  {jogo[6]}  |  {jogo[7]}  |  {jogo[8]}  \n\n");
-
-
 
                 if (jogo[0] == jogo[1] && jogo[0] == jogo[2] || jogo[3] == jogo[4] && jogo[3] == jogo[5] ||
                     jogo[6] == jogo[7] && jogo[6] == jogo[8] || jogo[0] == jogo[3] && jogo[0] == jogo[6] ||
@@ -36,16 +27,16 @@ namespace JogoDaVelha
                     )
                 {
 
+                    //Mostra o se houve guanhador ou empate
+
                     if (i % 2 != 0)
                     {
                         Console.WriteLine($"o ganhador é {NomeJogador[0]}");
-                        contadorplayer1++;
                         break;
                     }
                     else if (i % 2 == 0)
                     {
                         Console.WriteLine($"o ganhador é {NomeJogador[1]}");
-                        contadorplayer2++;
                         break;
                     }
 
@@ -53,11 +44,10 @@ namespace JogoDaVelha
                 else if (i == 9)
                 {
                     Console.WriteLine("EMPATE");
-                    contadorEmpate++;
                     break;
-
                 }
-                Console.WriteLine($"empate {contadorEmpate} PL1  {contadorplayer1 } PL2 {contadorplayer2}");
+
+                //mostra a vez da pessoa
 
                 if (i % 2 == 0)
                 {
@@ -74,6 +64,8 @@ namespace JogoDaVelha
 
                     int j = int.Parse(valorMarcado);
 
+                    //mostra quando quadrado ja está selecinado
+
                     if (jogo[j] == "X")
                     {
                         while (jogo[j] == "X")
@@ -83,7 +75,6 @@ namespace JogoDaVelha
                             j = int.Parse(valorMarcado);
                         }
                     }
-
 
                     if (jogo[j] == "O")
                     {
@@ -104,6 +95,9 @@ namespace JogoDaVelha
 
 
                 }
+
+                //mostra a vez da pessoa
+
                 else if (i % 2 != 0)
                 {
                     Console.Write($"Sua vez {NomeJogador[1]},digite o numero que deseja marcar o O: ");
@@ -115,6 +109,8 @@ namespace JogoDaVelha
                         valorMarcado = Console.ReadLine();
                     };
                     int j = int.Parse(valorMarcado);
+
+                    //mostra quando quadrado ja está selecinado
 
                     if (jogo[j] == "O")
                     {
@@ -143,82 +139,42 @@ namespace JogoDaVelha
                         jogo[j] = "O";
                     }
                 }
-
-              
-
             }
-
-
             Console.WriteLine();
 
-
-            MenuFinal(NomeJogador, contadorplayer1, contadorplayer2, contadorEmpate);
+            MenuFinal(NomeJogador);
 
 
         }
 
-        static void MostrarTabela(List<string>NomeJogador, int contadorplayer1, int contadorplayer2, int contadorEmpate)
-        {
-            Console.WriteLine($"player 1 {contadorplayer1}");
-            Console.WriteLine($"player 2 {contadorplayer2}");
-            Console.WriteLine($"Empate {contadorEmpate}");
-
-            
-          
-
-            int opcaoDesejada;
-
-            do {
-                Console.WriteLine("1 - voltar");
-                Console.WriteLine("0 - Sair do jogo");
-                opcaoDesejada = int.Parse(Console.ReadLine());
-                switch (opcaoDesejada)
-                {
-                    case 1: MenuFinal(NomeJogador, contadorplayer1, contadorplayer2, contadorEmpate);
-                        break;
-                    case 0:
-                        Console.Clear();
-                        Console.WriteLine("Saindo do jogo...");
-                        break;
-                }
-                 
-            } while (opcaoDesejada != 1 && opcaoDesejada != 0 );
-        }
-
-
-        static void MenuFinal(List<string> NomeJogador, int contadorplayer1, int contadorplayer2, int contadorEmpate)
+        static void MenuFinal(List<string> NomeJogador)
         {
 
             int opcaoDesejada;
             do
             {
                 Console.WriteLine("1 - Jogar novamente");
-                Console.WriteLine("2 - Mostrar tabela");
+
                 Console.WriteLine("0 - Sair do jogo");
 
                 opcaoDesejada = int.Parse(Console.ReadLine());
 
                 switch (opcaoDesejada)
                 {
-
                     case 1:
-                        IniciarJogo(NomeJogador,contadorEmpate,contadorplayer1,contadorplayer2);
+                        IniciarJogo(NomeJogador);
                         break;
-                    case 2:
-                        MostrarTabela(NomeJogador, contadorEmpate, contadorplayer1, contadorplayer2);
-                        break;
+
                     case 0:
                         Console.Clear();
                         Console.WriteLine("Saindo do jogo...");
                         break;
-
                 }
-            } while (opcaoDesejada != 0 && opcaoDesejada != 1 && opcaoDesejada != 2);
+            } while (opcaoDesejada != 0 && opcaoDesejada != 1);
 
 
         }
-
-
+        //Registra nome de jogador 
 
         static void RegistrarJogador(List<string> NomeJogador)
         {
@@ -233,20 +189,10 @@ namespace JogoDaVelha
         {
             List<string> NomeJogador = new List<string>();
 
-            int contadorplayer1 = 0;
-            int contadorplayer2 = 0;
-            int contadorEmpate = 0;
-
-
-
 
             RegistrarJogador(NomeJogador);
 
-            IniciarJogo(NomeJogador, contadorplayer1,  contadorplayer2, contadorEmpate);
-
-
-
-
+            IniciarJogo(NomeJogador);
         }
     }
 }
