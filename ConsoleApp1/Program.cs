@@ -6,11 +6,18 @@ namespace JogoDaVelha
 
     public class Program
     {
-        static void IniciarJogo(List<string> NomeJogador)
+        static void IniciarJogo(List<string> NomeJogador, int contadorpl1, int contadorpl2, int contadoDeEmpate)
         {
             string[] jogo = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" };
 
             string valorMarcado;
+
+            bool player1win = false;
+            bool player2win = false;
+            bool empate = false;
+            int contplayer1 = 0;
+            int contplayer2 = 0;
+            int contempate = 0;
 
             for (int i = 0; i <= 9; i++)
             {
@@ -32,11 +39,14 @@ namespace JogoDaVelha
                     if (i % 2 != 0)
                     {
                         Console.WriteLine($"o ganhador é {NomeJogador[0]}");
+                        player1win = true;
+
                         break;
                     }
                     else if (i % 2 == 0)
                     {
                         Console.WriteLine($"o ganhador é {NomeJogador[1]}");
+                        player2win = true;
                         break;
                     }
 
@@ -44,6 +54,7 @@ namespace JogoDaVelha
                 else if (i == 9)
                 {
                     Console.WriteLine("EMPATE");
+                    empate = true;
                     break;
                 }
 
@@ -142,18 +153,45 @@ namespace JogoDaVelha
             }
             Console.WriteLine();
 
-            MenuFinal(NomeJogador);
+            //Mostrar tabela
+
+            if (player1win == true)
+            {
+                contplayer1 = 1;
+                contadorpl1 += contplayer1;
+            }
+            else if (player2win == true)
+            {
+                contplayer2 = 1;
+                contadorpl2 += contplayer2;
+            }
+            else if (empate == true)
+            {
+                contempate = 1;
+
+                contadoDeEmpate += contempate;
+
+
+            }
+
+           // Console.WriteLine($"empate {contadoDeEmpate} player 1 {contadorpl1} player 2 {contadorpl2}");
+
+            MenuFinal(NomeJogador, contadorpl1,  contadorpl2,  contadoDeEmpate);
 
 
         }
 
-        static void MenuFinal(List<string> NomeJogador)
+        static void MenuFinal(List<string> NomeJogador, int contadorpl1, int contadorpl2, int contadoDeEmpate)
         {
 
             int opcaoDesejada;
             do
             {
                 Console.WriteLine("1 - Jogar novamente");
+
+                Console.WriteLine("2 - Mostrar Tabela");
+
+                Console.WriteLine("9 - Resetar");
 
                 Console.WriteLine("0 - Sair do jogo");
 
@@ -162,7 +200,15 @@ namespace JogoDaVelha
                 switch (opcaoDesejada)
                 {
                     case 1:
-                        IniciarJogo(NomeJogador);
+                        IniciarJogo(NomeJogador, contadorpl1, contadorpl2, contadoDeEmpate);
+                        break;
+
+                    case 2: MostrarTabela(NomeJogador, contadorpl1, contadorpl2, contadoDeEmpate);
+                        break;
+
+                    case 9:
+                        Console.Clear();
+                        Main();
                         break;
 
                     case 0:
@@ -174,6 +220,8 @@ namespace JogoDaVelha
 
 
         }
+
+
         //Registra nome de jogador 
 
         static void RegistrarJogador(List<string> NomeJogador)
@@ -185,14 +233,27 @@ namespace JogoDaVelha
             NomeJogador.Add(Console.ReadLine());
 
         }
+
+
+        static void MostrarTabela(List<string> NomeJogador, int contadorpl1, int contadorpl2, int contadoDeEmpate)
+        {
+            Console.WriteLine($"{NomeJogador[0]} = {contadorpl1} Vitórias");
+            Console.WriteLine($"{NomeJogador[1]} = {contadorpl2} Vitórias");
+            Console.WriteLine($"{contadoDeEmpate} Empates");
+
+        }
         public static void Main()
         {
             List<string> NomeJogador = new List<string>();
 
+            int contadorpl1 = 0;
+            int contadorpl2 = 0;
+            int contadoDeEmpate = 0;
+
 
             RegistrarJogador(NomeJogador);
 
-            IniciarJogo(NomeJogador);
+            IniciarJogo(NomeJogador, contadorpl1, contadorpl2, contadoDeEmpate);
         }
     }
 }
